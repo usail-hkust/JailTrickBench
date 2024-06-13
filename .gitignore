@@ -1,0 +1,26 @@
+# # Auto detect text files and perform LF normalization
+# * text=auto
+.idea/
+.vscode/
+.DS_Store
+
+__pycache__/
+*.pyc
+*.pkl
+*.txt
+*.csv
+*.ipynb
+
+
+exp_results/*
+exp_logs/*
+wandb/
+# scripts/
+models/
+
+
+!.gitkeep
+!baseline/AutoDAN/assets/*
+!data/**/*
+!./requirements.txt
+# !./scripts/*
