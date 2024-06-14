@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/framework-v6.png" alt="framework_"/></p>
 <div align="center">
 
-# <img src="assets/bag.png" style="height: 1em; vertical-align: middle;" />Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs
+# <img src="assets/bag.png" style="height: 1em; vertical-align: middle;" />[Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs](https://arxiv.org/abs/2406.09324)
 
 </div>
 
@@ -19,6 +19,7 @@
     - [3.1 Attack Methods](#31-attack-methods)
     - [3.2 Defense Methods](#32-defense-methods)
   - [4. Analysis](#4-analysis)
+  - [5. Citation](#5-citation)
 
 ## 1. Quick Start
 
@@ -160,4 +161,25 @@ To analyze the results, you can use the `./analysis/report_trick.py` script. For
 
 ```bash
 python analysis/report_trick.py
+```
+
+## 5. Citation
+
+If you find this repository helpful, please consider citing our paper🥺🥺🥺:
+
+```
+@article{xu2024bag,
+      title={Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs}, 
+      author={Zhao Xu and Fan Liu and Hao Liu},
+      journal={arXiv preprint arXiv:2406.09324},
+      year={2024}
+}
+
+@article{liu2024adversarial,
+      title={Adversarial Tuning: Defending Against Jailbreak Attacks for LLMs}, 
+      author={Fan Liu and Zhao Xu and Hao Liu},
+      journal={arXiv preprint arXiv:2406.06622},
+      year={2024}
+}
+
 ```
