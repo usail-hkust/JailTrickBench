@@ -48,8 +48,8 @@ To reproduce the main experiment results, you need to prepare the following mode
   - AmpleGCG: If you cannot load the huggingface model directly using the `AutoModelForCausalLM.from_pretrained()` function, you may need to download the attack model `osunlp/AmpleGCG-llama2-sourced-llama2-7b-chat` and `osunlp/AmpleGCG-llama2-sourced-vicuna-7b` from the Hugging Face first.
 - Defense Model:
   - RPO: You need to run the RPO method from the original repository to get the defense adversarial suffix. We also provide the results we obtained.
-  - Advertorial Training: You need to train the adversarial training model to get the defense model. You can save the defense model to `"./models/defense/`. Due to the space limitation, we cannot provide the pre-trained model in annoymous repository. After the paper is public, we will provide the pre-trained model in the official repository.
-  - Safety Training: You need to train the safety training model to get the defense model. You can save the defense model to `"./models/defense/`. Due to the space limitation, we cannot provide the pre-trained model in annoymous repository. After the paper is public, we will provide the pre-trained model in the official repository.
+  - Advertorial Training: You need to train the adversarial training model to get the defense model. You can save the defense model to `"./models/defense/`. Due to the space limitation, we cannot provide the pre-trained model in anonymous repository. After the paper is public, we will provide the pre-trained model in the official repository.
+  - Safety Training: You need to train the safety training model to get the defense model. You can save the defense model to `"./models/defense/`. Due to the space limitation, we cannot provide the pre-trained model in anonymous repository. After the paper is public, we will provide the pre-trained model in the official repository.
 
 ### 1.3 One-Click Run
 
