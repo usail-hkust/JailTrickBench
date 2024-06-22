@@ -22,5 +22,5 @@ models/
 !.gitkeep
 !baseline/AutoDAN/assets/*
 !data/**/*
-!./requirements.txt
+!requirements.txt
 # !./scripts/*
