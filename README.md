@@ -26,8 +26,10 @@
 ### 1.1 Installation
 
 ```bash
-git clone <Repo Link> or download the zip file from anonymous github
-cd ./Bag_of_Tricks_for_LLM_Jailbreaking-4E10/
+git clone git@github.com:usail-hkust/Bag_of_Tricks_for_LLM_Jailbreaking.git
+cd ./Bag_of_Tricks_for_LLM_Jailbreaking/
+conda create -n bot python=3.10
+conda activate bot
 pip install -r requirements.txt
 ```
 
