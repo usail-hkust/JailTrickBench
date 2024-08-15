@@ -6,6 +6,7 @@
 </div>
 
 - [Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs](#bag-of-tricks-benchmarking-of-jailbreak-attacks-on-llms)
+  - [0. Update](#0-update)
   - [1. Quick Start](#1-quick-start)
     - [1.1 Installation](#11-installation)
     - [1.2 Preparation](#12-preparation)
@@ -19,7 +20,12 @@
     - [3.1 Attack Methods](#31-attack-methods)
     - [3.2 Defense Methods](#32-defense-methods)
   - [4. Analysis](#4-analysis)
-  - [5. Citation](#5-citation)
+  - [5. Supported LLMs](#5-supported-llms)
+  - [6. Citation](#6-citation)
+
+## 0. Update
+
+1. 2024.08 Update1: We support more LLMs including: Llama2, Llama3, Mistral, Qwen, Vicuna families. See all supported models and details HERE.
 
 ## 1. Quick Start
 
@@ -165,7 +171,20 @@ To analyze the results, you can use the `./analysis/report_trick.py` script. For
 python analysis/report_trick.py
 ```
 
-## 5. Citation
+## 5. Supported LLMs
+
+| Model                                                             | Model size                       |
+| ----------------------------------------------------------------- | -------------------------------- |
+| [Llama](https://github.com/facebookresearch/llama)                | 7B/13B/33B/65B                   |
+| [Llama 2](https://huggingface.co/meta-llama)                      | 7B/13B/70B                       |
+| [Llama 3/Llama 3.1](https://huggingface.co/meta-llama)            | 8B/70B                           |
+| [Mistral/Mixtral](https://huggingface.co/mistralai)               | 7B/8x7B/8x22B                    |
+| [Qwen/Qwen1.5/Qwen2](https://huggingface.co/Qwen)                 | 0.5B/1.5B/4B/7B/14B/32B/72B/110B |
+| [Vicuna](https://huggingface.co/lmsys)                            | 7B/13B                           |
+
+For model size larger than 13B/14B, we use 4 bit quantization to reduce the memory usage.
+
+## 6. Citation
 
 If you find this repository helpful, please consider citing our paper🥺🥺🥺:
 
