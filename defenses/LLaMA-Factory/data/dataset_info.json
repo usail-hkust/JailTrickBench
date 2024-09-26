@@ -1,0 +1,8 @@
+{
+  "adv_training_data":{
+    "file_name": "adv_training_data.json"
+  },
+  "safety_training_data":{
+    "file_name": "safety_training_data.json"
+  }
+}

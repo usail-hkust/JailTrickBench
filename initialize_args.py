@@ -231,6 +231,14 @@ def initialize_args():
         help="Number of concurrent jailbreak conversations. If this is too large, then there may be out of memory errors.",
     )
     ##################################################
+    ########### Attack model parameters: DrAttack ##########
+    parser.add_argument(
+        "--prompt_info_path",
+        type=str,
+        default="data/harmful_bench_debug.csv",
+        help="The path of instructions",
+    )
+    ##################################################
     ########### Attack model parameters: TAP ##########
     parser.add_argument(
         "--attack_model",

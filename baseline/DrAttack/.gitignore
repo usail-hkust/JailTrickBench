@@ -1,0 +1,14 @@
+# ignore all .log files
+*.egg-info
+
+# ignore specific directories
+experiments/results
+api_keys/
+
+# ignore cache
+cache/
+
+# ignore specific file types
+# Python cache:
+__pycache__/
+*.py[cod]

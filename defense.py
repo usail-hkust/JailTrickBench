@@ -14,12 +14,12 @@ from utils.test_utils import (
     test_prefixes,
     save_test_to_file_split,
 )
-import llm_smooth.defenses as defenses
-import llm_smooth.language_models as language_models
+import defenses.llm_smooth.defenses as defenses
+import defenses.llm_smooth.language_models as language_models
 
 
 def smooth_pert(goal, pert_type="None", smoothllm_pert_pct=0.1):
-    from llm_smooth.smoothLLM import (
+    from defenses.llm_smooth.smoothLLM import (
         random_patch,
         random_swap_updated,
         random_insert_updated,
@@ -62,6 +62,7 @@ def generate_defense_goal(
         "unlearn",
         "safety_tuning",
         "adv_training_noaug",
+        "primeguard",
     ]:
         pert_goal = goal
     else:

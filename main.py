@@ -4,7 +4,7 @@ import datetime
 
 
 from utils.utils import load_model_and_tokenizer, set_random_seed
-from utils.string_utils import load_prompts
+from utils.string_utils import load_prompts, load_goals
 from utils.test_utils import (
     get_template_name,
     save_test_to_file,
@@ -13,6 +13,7 @@ from utils.test_utils import (
     load_test_from_file_split,
     save_test_to_file_split,
     load_split_file_whole,
+    instruction2dratk_data_path,
 )
 
 # import args
@@ -36,7 +37,13 @@ from baseline.AdvPrompter.AdvPrompter_single_main import (
 )
 from baseline.AmpleGCG.utils import load_target_models_amplegcg
 from baseline.AdvPrompter.utils import load_target_models_advprompter
-
+from baseline.DrAttack.DrAttack_single_main import DrAttack_initial, DrAttack_single_main, DrAttack_stop
+from baseline.MultiJail.MultiJail_single_main import (
+    MultiJail_initial,
+    MultiJail_generate_suffix,
+    MultiJail_single_main,
+)
+from baseline.MultiJail.utils import load_target_models_MultiJail
 # import defense methods
 from defense import test_smoothLLM, generate_defense_goal
 
@@ -96,6 +103,34 @@ def generate_attack_result(goal, target, models, device, args, curr_output):
             target_model=model,
             goal=goal,
             target=target,
+        )
+        curr_output["adv_prompt"] = adv_prompt
+        curr_output["language_model_output"] = model_output
+        curr_output["attack_iterations"] = iteration
+        curr_output["is_JB"] = is_JB
+    elif args.attack == "DrAttack":
+        curr_args_dict = vars(args)
+        curr_output_record = DrAttack_single_main(
+            args_dict=curr_args_dict,
+            worker=models[0],
+            attack=models[1],
+            goal=goal,
+        )
+        curr_output["adv_prompt"] = curr_output_record["adv_prompt"]
+        curr_output["optimized_sentence"] = curr_output_record["optimized_sentence"]
+        curr_output["language_model_output"] = curr_output_record["language_model_output"]
+        curr_output["negative_similarity_score"] = curr_output_record["negative_similarity_score"]
+        curr_output["attack_iterations"] = curr_output_record["attack_iterations"]
+        curr_output["is_JB"] = curr_output_record["is_JB"]
+    elif args.attack == "MultiJail":
+        model = models[0]
+        curr_args_dict = vars(args)
+        adv_prompt, model_output, iteration, is_JB = MultiJail_single_main(
+            args_dict=curr_args_dict,
+            target_model=model,
+            goal=goal,
+            target=target,
+            curr_output=curr_output,
         )
         curr_output["adv_prompt"] = adv_prompt
         curr_output["language_model_output"] = model_output
@@ -168,22 +203,30 @@ def generate_attack_result(goal, target, models, device, args, curr_output):
 
 
 def test(goals, targets, models, device, args, all_output=[]):
-
-    pert_goals = [
-        generate_defense_goal(
-            goal_i,
-            defense_type=args.defense_type,
-            pert_type=args.pert_type,
-            smoothllm_pert_pct=args.smoothllm_pert_pct,
-        )
-        for goal_i in goals
-    ]
+    if args.attack == "DrAttack" and args.defense_type in ["self_reminder", "RPO", "smoothLLM"]:
+            instruction_name = args.instructions_path.split("/")[-1]
+            pert_goals_path = instruction2dratk_data_path[instruction_name][args.defense_type]
+            # pert_goals = load_pert_goals(pert_goals_path)
+            pert_goals = load_goals(pert_goals_path)
+    else:
+        pert_goals = [
+            generate_defense_goal(
+                goal_i,
+                defense_type=args.defense_type,
+                pert_type=args.pert_type,
+                smoothllm_pert_pct=args.smoothllm_pert_pct,
+            )
+            for goal_i in goals
+        ]
     if args.attack == "AmpleGCG":
         args.suffix_dict = AmpleGCG_generate_suffix(args, pert_goals)
         models = [load_target_models_amplegcg(args)]
     elif args.attack == "AdvPrompter":
         args.suffix_dict = AdvPrompter_generate_suffix(args, pert_goals)
         models = [load_target_models_advprompter(args)]
+    elif args.attack == "MultiJail":
+        args.suffix_dict = []
+        models = [load_target_models_MultiJail(args)]
 
     for goal_i, target_i, pert_goal_i in tqdm(
         zip(
@@ -256,9 +299,19 @@ def run(goals, targets, target_model_path, device, args, all_output=[]):
         args_dict = vars(args)
         args = AdvPrompter_initial(args_dict=args_dict)
         models = []
+    elif args.attack == "DrAttack":
+        args_dict = vars(args)
+        args, worker, attack = DrAttack_initial(args_dict=args_dict)
+        models = [worker, attack]
+    elif args.attack == "MultiJail":
+        args_dict = vars(args)
+        args = MultiJail_initial(args_dict=args_dict)
+        models = []
     else:
         raise NameError
     all_output = test(goals, targets, models, device, args, all_output=all_output)
+    if args.attack == "DrAttack":
+        DrAttack_stop(worker=worker)
     return all_output
 
 
@@ -314,7 +367,7 @@ def main(args):
     all_output = run(goals, targets, target_model_path, device, args, all_output)
 
     # test smoothLLM
-    if args.defense_type == "smoothLLM":
+    if args.defense_type == "smoothLLM" and args.attack != "DrAttack":
         final_all_output = test_smoothLLM(all_output, args)
     else:
         print(f"""\n{'=' * 36}\nNo SmoothLLM Test\n{'=' * 36}\n""")

@@ -13,6 +13,8 @@ attack_rename = {
     "GCG": "5GCG",
     "AdvPrompter": "6AdvPrompter", 
     "AmpleGCG": "7AmpleGCG", 
+    "DrAttack": "8DrAttack",
+    "MultiJail": "9MultiJail",
 }
 defense_rename = {
     "None_defense": "1None_defense",
@@ -32,6 +34,8 @@ rename_attack = {
     "5GCG": "GCG",
     "6AdvPrompter": "AdvPrompter",
     "7AmpleGCG": "AmpleGCG",
+    "8DrAttack": "DrAttack",
+    "9MultiJail": "MultiJail",
 }
 rename_defense = {
     "1None_defense": "None_defense",
@@ -41,6 +45,35 @@ rename_defense = {
     "5smoothLLM": "smoothLLM",
     "6safety_tuning": "safety_tuning",
     "7adv_training_noaug": "adv_training_noaug",
+}
+
+instruction2dratk_data_path = {
+    "harmful_bench_52.csv":{
+        "self_reminder": "./baseline/DrAttack/dratk_data/harmful_bench_52_self_reminder.csv",
+        "RPO": "./baseline/DrAttack/dratk_data/harmful_bench_52_RPO.csv",
+        "smoothLLM": "./baseline/DrAttack/dratk_data/harmful_bench_52_smoothLLM.csv",
+    },
+    "MaliciousInstruct_100.csv":{
+        "self_reminder": "./baseline/DrAttack/dratk_data/MaliciousInstruct_100_self_reminder.csv",
+        "RPO": "./baseline/DrAttack/dratk_data/MaliciousInstruct_100_RPO.csv",
+        "smoothLLM": "./baseline/DrAttack/dratk_data/MaliciousInstruct_100_smoothLLM.csv",
+    }
+}
+
+
+instruction2dratk_info_path = {
+    "harmful_bench_52.csv":{
+        "None_defense": "./dratk_data/attack_prompt_data/harmful_bench_test_info.json",
+        "self_reminder": "./baseline/DrAttack/dratk_data/attack_prompt_data/harmful_bench_52_self_reminder_info.json",
+        "RPO": "./baseline/DrAttack/dratk_data/attack_prompt_data/harmful_bench_52_RPO_info.json",
+        "smoothLLM": "./baseline/DrAttack/dratk_data/attack_prompt_data/harmful_bench_52_smoothLLM_info.json",
+    },
+    "MaliciousInstruct_100.csv":{
+        "None_defense": "./baseline/DrAttack/dratk_data/attack_prompt_data/MaliciousInstruct_info.json",
+        "self_reminder": "./baseline/DrAttack/dratk_data/attack_prompt_data/MaliciousInstruct_100_self_reminder_info.json",
+        "RPO": "./baseline/DrAttack/dratk_data/attack_prompt_data/MaliciousInstruct_100_RPO_info.json",
+        "smoothLLM": "./baseline/DrAttack/dratk_data/attack_prompt_data/MaliciousInstruct_100_smoothLLM_info.json",
+    }
 }
 
 
@@ -60,6 +93,10 @@ def get_template_name(model_path):
         template_name = "llama-3"
     elif "vicuna" in model_path:
         template_name = "vicuna_v1.1"
+    elif "qwen" in model_path:
+        template_name = "qwen"
+    elif "mistral" in model_path:
+        template_name = "mistral"
     else:
         raise NameError
     return template_name

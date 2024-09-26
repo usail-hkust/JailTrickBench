@@ -1,0 +1,6 @@
+transformers==4.28.1
+ml_collections
+fschat==0.2.20
+openai==0.28
+nltk
+google-generativeai==0.3.1

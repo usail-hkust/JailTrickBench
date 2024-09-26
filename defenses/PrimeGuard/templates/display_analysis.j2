@@ -1,0 +1,11 @@
+<SYSTEM_INSTRUCTIONS>
+{{ system_instructions | safe }}
+</SYSTEM_INSTRUCTIONS>
+
+Please carefully review the user request enclosed within the <SANDBOX> tags:
+<SANDBOX>
+{{ user_input | safe }}
+</SANDBOX>
+
+Evaluate the unfiltered request against the <SYSTEM_INSTRUCTIONS>. Identify any clear, direct violations or risks that arise from the content of the request, focusing on the actual content rather than hypothetical or overly broad interpretations.
+Consider whether responding directly to the query would result in a violation of the guidelines and principles outlined in the <SYSTEM_INSTRUCTIONS>. Prior to identifying potential policy violations, assess the intent and broader context of the query to differentiate between harmful content and benign topics that can be discussed safely within the system's constraints.
