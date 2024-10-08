@@ -38,10 +38,24 @@
 🌟 **If you find this resource helpful, please consider starring this repository and citing our NeurIPS'24 paper:**
 
 ```
+@inproceedings{NEURIPS2024_xu2024bag,
+ author={Xu, Zhao and Liu, Fan and Liu, Hao},
+ booktitle = {Advances in Neural Information Processing Systems},
+ title = {Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs},
+ year = {2024}
+}
+
 @article{xu2024bag,
   title={Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs},
   author={Xu, Zhao and Liu, Fan and Liu, Hao},
   journal={arXiv preprint arXiv:2406.09324},
+  year={2024}
+}
+
+@article{liu2024adversarial,
+  title={Adversarial tuning: Defending against jailbreak attacks for llms},
+  author={Liu, Fan and Xu, Zhao and Liu, Hao},
+  journal={arXiv preprint arXiv:2406.06622},
   year={2024}
 }
 ```
