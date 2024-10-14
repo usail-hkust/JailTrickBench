@@ -432,7 +432,7 @@ In the implementation of this project, we have referred to the code from the fol
 
 - Attack methods: GCG, AutoDAN, PAIR, TAP, GPTFuzz, AdvPrompter, AmpleGCG, DrAttack, MultiJail
   - [GCG][R-GCG]
-  - [AutoDAN]][R-AutoDAN]
+  - [AutoDAN][R-AutoDAN]
   - [PAIR][R-PAIR]
   - [TAP][R-TAP]
   - [GPTFuzz][R-GPTFuzz]
