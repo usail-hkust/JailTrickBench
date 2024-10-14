@@ -6,7 +6,8 @@
 </div>
 
 - [Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs](#bag-of-tricks-benchmarking-of-jailbreak-attacks-on-llms)
-  - [0. Update](#0-update)
+  - [0. Overview](#0-overview)
+    - [Update](#update)
   - [1. Quick Start](#1-quick-start)
     - [1.1 Installation](#11-installation)
     - [1.2 Preparation](#12-preparation)
@@ -24,7 +25,11 @@
   - [5. Supported LLMs](#5-supported-llms)
   - [6. Acknowledgement](#6-acknowledgement)
 
-## 0. Update
+## 0. Overview
+
+Although Large Language Models (LLMs) have demonstrated significant capabilities in executing complex tasks in a zero-shot manner, they are susceptible to jailbreak attacks and can be manipulated to produce harmful outputs. Recently, a growing body of research has categorized jailbreak attacks into token-level and prompt-level attacks. However, previous work primarily overlooks the diverse key factors of jailbreak attacks, with most studies concentrating on LLM vulnerabilities and lacking exploration of defense-enhanced LLMs. To address these issues, we evaluate the impact of various attack settings on LLM performance and provide a baseline benchmark for jailbreak attacks, encouraging the adoption of a standardized evaluation framework. Specifically, we evaluate the eight key factors of implementing jailbreak attacks on LLMs from both target-level and attack-level perspectives. We further conduct seven representative jailbreak attacks on six defense methods across two widely used datasets, encompassing approximately 354 experiments with about 55,000 GPU hours on A800-80G. Our experimental results highlight the need for standardized benchmarking to evaluate these attacks on defense-enhanced LLMs. 
+
+### Update
 
 1. **2024.08 Update1:** We support more LLMs including: Llama2, Llama3, Mistral, Qwen, Tulu, and Vicuna families. See all supported models and details [HERE](#5-supported-llms).
 
@@ -35,6 +40,7 @@
 3. **2024.08 Update3:** We add a step-by-step guide to obtain the output of model-level defense methods. We provide the code to train the adversarial training model and safety training model. We also provide the code to run the RPO method to get the defense adversarial suffix. Please see the details in the [1.3.2 section](#123-step-by-step-guide-to-obtain-the-output-of-model-level-defense-methods). After the paper is public, we will also provide the pre-trained model in the official repository.
 
 4. **2024.08 Update4:** Recently, we noticed a new defense methods called [PrimeGuard](https://arxiv.org/pdf/2407.16318) which is presented in NextGenAISafety@ICML2024. This paper proposes a dynamic routing mechanism to detect different types of prompts and use in-context learning to prevent the jailbreak responses. We have added the PrimeGuard defense method in the codebase. However, in the original realization, PrimeGuard requires API LLM calls to construct the interaction environment. Therefore, you need to use this defense method in **multiple** GPUs environment and start the local server first. We will continue to work on the optimization of the PrimeGuard defense method.
+5. **2024.10 Update:** We are working on new version of **JailTrickBench** which will be released in the future. The new version will include more attack methods, defense methods, more tricks and will support more LLMs. We will also provide the pre-trained models and datasets in the new version. Stay tuned!
 
 🌟 **If you find this resource helpful, please consider starring this repository and citing our NeurIPS'24 paper:**
 
