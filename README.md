@@ -36,6 +36,32 @@
 
 4. **2024.08 Update4:** Recently, we noticed a new defense methods called [PrimeGuard](https://arxiv.org/pdf/2407.16318) which is presented in NextGenAISafety@ICML2024. This paper proposes a dynamic routing mechanism to detect different types of prompts and use in-context learning to prevent the jailbreak responses. We have added the PrimeGuard defense method in the codebase. However, in the original realization, PrimeGuard requires API LLM calls to construct the interaction environment. Therefore, you need to use this defense method in **multiple** GPUs environment and start the local server first. We will continue to work on the optimization of the PrimeGuard defense method.
 
+🌟 **If you find this resource helpful, please consider starring this repository and citing our NeurIPS'24 paper:**
+
+```
+@inproceedings{NEURIPS2024_xu2024bag,
+ author={Xu, Zhao and Liu, Fan and Liu, Hao},
+ booktitle = {Advances in Neural Information Processing Systems},
+ title = {Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs},
+ year = {2024}
+}
+
+@article{xu2024bag,
+  title={Bag of Tricks: Benchmarking of Jailbreak Attacks on LLMs},
+  author={Xu, Zhao and Liu, Fan and Liu, Hao},
+  journal={arXiv preprint arXiv:2406.09324},
+  year={2024}
+}
+
+@article{liu2024adversarial,
+  title={Adversarial tuning: Defending against jailbreak attacks for llms},
+  author={Liu, Fan and Xu, Zhao and Liu, Hao},
+  journal={arXiv preprint arXiv:2406.06622},
+  year={2024}
+}
+```
+
+
 ## 1. Quick Start
 
 ### 1.1 Installation
