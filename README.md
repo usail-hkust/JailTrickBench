@@ -22,6 +22,7 @@
     - [3.2 Defense Methods](#32-defense-methods)
   - [4. Analysis](#4-analysis)
   - [5. Supported LLMs](#5-supported-llms)
+  - [6. Acknowledgement](#6-acknowledgement)
 
 ## 0. Update
 
@@ -239,7 +240,7 @@ python main.py -h
 
 ### 3.1 Attack Methods
 
-- AutoDAN
+- [AutoDAN][R-AutoDAN]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -252,7 +253,7 @@ python main.py -h
     --agent_recheck \
     --exp_name main_vicuna_none_defense
   ```
-- PAIR
+- [PAIR][R-PAIR]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -266,7 +267,7 @@ python main.py -h
     --agent_recheck \
     --exp_name main_vicuna_none_defense
   ```
-- TAP
+- [TAP][R-TAP]
   ```bash
     python -u main.py \
       --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -281,7 +282,7 @@ python main.py -h
       --exp_name main_vicuna_none_defense
   ```
 
-- GPTFuzz
+- [GPTFuzz][R-GPTFuzz]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -294,7 +295,7 @@ python main.py -h
     --agent_recheck
   ```
 
-- GCG
+- [GCG][R-GCG]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -308,7 +309,7 @@ python main.py -h
     --exp_name main_vicuna_none_defense
   ```
 
-- AdvPrompter
+- [AdvPrompter][R-AdvPrompter]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -323,7 +324,7 @@ python main.py -h
     --adv_prompter_model_path ./models/attack/advprompter_vicuna_7b
   ```
 
-- AmpleGCG
+- [AmpleGCG][R-AmpleGCG]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -337,7 +338,7 @@ python main.py -h
     --exp_name main_vicuna_none_defense \
     --attack_source vicuna
   ```
-- DrAttack
+- [DrAttack][R-DrAttack]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -352,7 +353,7 @@ python main.py -h
     --exp_name main_vicuna_none_defense
   ```
 
-- MultiJail
+- [MultiJail][R-MultiJail]
   ```bash
   python -u main.py \
     --target_model_path lmsys/vicuna-13b-v1.5 \
@@ -399,3 +400,36 @@ python analysis/report_trick.py
 | [Vicuna](https://huggingface.co/lmsys)                            | 7B/13B                           |
 
 For model size larger than 13B/14B, we use 4 bit quantization to reduce the memory usage.
+
+## 6. Acknowledgement
+In the implementation of this project, we have referred to the code from the following repositories or papers:
+
+- Attack methods: GCG, AutoDAN, PAIR, TAP, GPTFuzz, AdvPrompter, AmpleGCG, DrAttack, MultiJail
+  - [GCG][R-GCG]
+  - [AutoDAN]][R-AutoDAN]
+  - [PAIR][R-PAIR]
+  - [TAP][R-TAP]
+  - [GPTFuzz][R-GPTFuzz]
+  - [AdvPrompter][R-AdvPrompter]
+  - [AmpleGCG][R-AmpleGCG]
+  - [DrAttack][R-DrAttack]
+  - [MultiJail][R-MultiJail]
+- Defense methods: Self Reminder, RPO, SmoothLLM, Unlearning
+  - [Self Reminder][R-Self_Reminder]
+  - [RPO][R-RPO]
+  - [SmoothLLM][R-SmoothLLM]
+  - [Unlearning][R-Unlearning]
+
+[R-GCG]: https://github.com/llm-attacks/llm-attacks
+[R-AutoDAN]: https://github.com/SheltonLiu-N/AutoDAN
+[R-PAIR]: https://github.com/patrickrchao/JailbreakingLLMs
+[R-TAP]: https://github.com/RICommunity/TAP
+[R-GPTFuzz]: https://github.com/sherdencooper/GPTFuzz
+[R-AdvPrompter]: https://github.com/facebookresearch/advprompter
+[R-AmpleGCG]: https://github.com/OSU-NLP-Group/AmpleGCG
+[R-DrAttack]: https://github.com/xirui-li/DrAttack/tree/main
+[R-MultiJail]: https://github.com/DAMO-NLP-SG/multilingual-safety-for-LLMs
+[R-Self_Reminder]: https://www.nature.com/articles/s42256-023-00765-8
+[R-RPO]: https://github.com/lapisrocks/rpo
+[R-SmoothLLM]: https://github.com/arobey1/smooth-llm
+[R-Unlearning]: https://github.com/kevinyaobytedance/llm_unlearn
