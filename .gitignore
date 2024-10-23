@@ -23,4 +23,5 @@ models/
 !baseline/AutoDAN/assets/*
 !data/**/*
 !requirements.txt
+!baseline/MultiJail/multijail_data/*.csv
 # !./scripts/*
