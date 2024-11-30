@@ -24,6 +24,13 @@ def load_pert_goals(instructions_path):
             pert_goal.append(row["pert_goal"])
     return pert_goal
 
+def load_goals(instructions_path):
+    with open(instructions_path, "r", newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        pert_goal = []
+        for row in reader:
+            pert_goal.append(row["goal"])
+    return pert_goal
 
 def get_template_name(model_path):
     if "gpt-4" in model_path:
